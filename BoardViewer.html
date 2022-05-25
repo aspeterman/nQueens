@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>n-rooks solver</title>
+    <style type="text/css">
+    body {
+      display: block;
+      text-align: center;
+    }
+    table{
+    display: inline-block;
+    }
+      .square:hover {
+        box-shadow:
+                1px 1px #23925e,
+                2px 2px #23925e,
+                3px 3px #23925e;
+        -webkit-transform: translateX(-3px);
+        transform: translateX(-3px);
+      }
+      .square {
+        width: 60px;
+        height: 60px;
+        text-align: center;
+        cursor: crosshair;
+      }
+      .positive {
+        background-color: green;
+      }
+
+      .negative {
+        background-color: lightgreen;
+      }
+
+      .inConflict{
+          background-color: red;
+      }
+    </style>
+  </head>
+  <body>
+    <script src="lib/jquery-1.8.3.js"></script>
+    <script src="lib/underscore.js"></script>
+    <script src="lib/backbone.js"></script>
+    <script src="src/Board.js"></script>
+    <script src="src/BoardView.js"></script>
+    <script src="src/solvers.js"></script>
+
+    <script>
+      // This function uses a board visualizer lets you view an interactive version of any piece matrix.
+      window.displayBoard = function(matrix){
+
+        $('body').html(
+          new BoardView({
+            model: new Board(matrix)
+          }).render()
+        );
+        $('body').html(
+          new BoardView({
+            model: new Board(matrix)
+          }).render()
+        );
+      };
+      $(function(){
+
+        displayBoard([
+        [1,0,0,0,0,0,0,0,0],[0,0,1,0,0,0,0,0,0],[0,0,0,0,0,1,0,0,0],[0,0,0,0,0,0,0,1,0],[0,1,0,0,0,0,0,0,0],[0,0,0,1,0,0,0,0,0],[0,0,0,0,0,0,0,0,1],[0,0,0,0,0,0,1,0,0],[0,0,0,0,1,0,0,0,0]
+
+        ]);
+
+        var n = 4;
+        findNRooksSolution(n);
+        countNRooksSolutions(n);
+        findNQueensSolution(n);
+        countNQueensSolutions(n);
+      });
+      </script>
+  </body>
+</html>
